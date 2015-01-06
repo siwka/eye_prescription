@@ -20,4 +20,18 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  title:
+    sessions:
+      new: "Login"
+      forgot_password: "Reset <br /><em>Password</em>"
+    staticpages:
+      home: "Welcome to Optician Prescription"		
+    users:
+      index: "Client <br /><em>List</em>"
+      edit:  "Edit %{client}"
+      update: "Edit %{client}"
+      new: "Add New Client"
+      edit_update_title: "Edit Client<br /><em>%{client}</em>"
+      show: "%{client} - Client Detail"
+      title: "Client <br /><em>Detail</em>"
+      prescriptions: "Appointments for %{client}</em>"
