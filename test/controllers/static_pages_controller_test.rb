@@ -6,5 +6,4 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_response :success
     assert_select "title", "Optician Prescription"
   end
-
 end

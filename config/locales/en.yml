@@ -30,7 +30,7 @@ en:
       index: "Client <br /><em>List</em>"
       edit:  "Edit %{client}"
       update: "Edit %{client}"
-      new: "Add New Client"
+      new: "Sign up"
       edit_update_title: "Edit Client<br /><em>%{client}</em>"
       show: "%{client} - Client Detail"
       title: "Client <br /><em>Detail</em>"
