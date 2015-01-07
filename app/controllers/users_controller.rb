@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
   def new
   	@user = User.new
   end
@@ -25,4 +25,20 @@ class UsersController < ApplicationController
   		params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation)
    	end
+
+     # Before filters
+
+      # Confirms a logged-in user.   ks-del?
+      def logged_in_user
+        unless logged_in?
+          flash[:danger] = "Please log in."
+          redirect_to login_url
+        end
+      end
+      
+      # Confirms the correct user.   ks-del?
+      def correct_user
+        @user = User.find(params[:id])
+        redirect_to(root_url) unless current_user?(@user)
+      end    
 end
