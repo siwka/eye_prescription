@@ -1,0 +1,14 @@
+<li id="prescription-<%= prescription.id %>">
+  <span class="user"><%= link_to "prescription-#{prescription.id}", prescription.user %></span>
+  <span class="content">
+  <% if prescription.glasses %>
+  	Glasses
+  <% else %>
+  	Contact Lenses
+  <% end%></br>
+	Right Eye <%= prescription.re_indicator %> <%= prescription.re_value %></br>
+  Left Eye <%= prescription.le_indicator %><%= prescription.le_value %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(prescription.created_at) %> ago.
+  </span>
+</li>

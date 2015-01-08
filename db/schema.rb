@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107040719) do
+ActiveRecord::Schema.define(version: 20150107185800) do
+
+  create_table "prescriptions", force: true do |t|
+    t.boolean  "glasses"
+    t.string   "re_indicator"
+    t.float    "re_value"
+    t.string   "le_indicator"
+    t.float    "le_value"
+    t.string   "re_indicator_extra"
+    t.float    "re_value_extra"
+    t.string   "le_indicator_extra"
+    t.float    "le_value_extra"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "prescriptions", ["user_id", "created_at"], name: "index_prescriptions_on_user_id_and_created_at"
+  add_index "prescriptions", ["user_id"], name: "index_prescriptions_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  glasses: false
+  re_indicator: MyString
+  re_value: 1.5
+  le_indicator: MyString
+  le_value: 1.5
+  re_indicator_extra: MyString
+  re_value_extra: 1.5
+  le_indicator_extra: MyString
+  le_value_extra: 1.5
+  created_at: <%= 10.minutes.ago %>
+  user: customer
+
+two:
+  glasses: false
+  re_indicator: MyString
+  re_value: 1.5
+  le_indicator: MyString
+  le_value: 1.5
+  re_indicator_extra: MyString
+  re_value_extra: 1.5
+  le_indicator_extra: MyString
+  le_value_extra: 1.5
+  created_at: <%= 3.years.ago %>
+  user: customer
+
+three:
+  glasses: true
+  re_indicator: MyString
+  re_value: 1.5
+  le_indicator: MyString
+  le_value: 1.5
+  re_indicator_extra: MyString
+  re_value_extra: 1.5
+  le_indicator_extra: MyString
+  le_value_extra: 1.5
+  created_at: <%= 2.hours.ago %>
+  user: customer
+
+most_recent:
+  glasses: false
+  re_indicator: MyString
+  re_value: 1.5
+  le_indicator: MyString
+  le_value: 1.5
+  re_indicator_extra: MyString
+  re_value_extra: 1.5
+  le_indicator_extra: MyString
+  le_value_extra: 1.5
+  created_at: <%= Time.zone.now %>
+  user: customer
