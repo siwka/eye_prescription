@@ -1,15 +1,12 @@
 <%= form_for(@prescription) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="row">
+    <div class="col-md-12 col-md-offset-0" >
+     <% @prescription.glasses = false %>
+      <%= f.collection_radio_buttons :glasses, [[true, 'Glasses'], [false, 'Contact lenses']], :first, :last, { checked: true } %>
+		</div>
+
     <div class="col-md-12 col-md-offset-0">
-
-	    <div>
-	      <%= f.label :glasses do %>
-	        <%= f.check_box :glasses %>
-	        <span>Glasses</span>
-	      <% end %>
-      <div>
-
 	    <%= f.label "Right Eye: Criterium" %>
 	    <%= f.select :re_indicator, %w(SPH CYL AXIS BC DIAM), class: 'form-control' %>
 	    <%= f.label 'numeric value' %>
@@ -18,19 +15,29 @@
 	    <%= f.label "Left Eye: Criterium" %>	    
 	    <%= f.select :le_indicator, %w(SPH CYL AXIS BC DIAM) %>
 	    <%= f.label 'numeric value' %>
-	    <%= f.text_field :le_value, class: 'form-control', placeholder: "Left Eye numeral value..." %>	    
+	    <%= f.text_field :le_value, class: 'form-control', placeholder: "Left Eye numeral value..." %>    
  
+	    <%= f.label "Right Eye: Additional criterium" %>
+	    <%= f.select :re_indicator_extra, %w(CYL AXIS), include_blank: true,
+	    																  class: 'form-control' %>
+	    <%= f.label 'numeric value' %>
+	    <%= f.text_field :re_value_extra, class: 'form-control', placeholder: "Right eye numeral value..." %>
 
+	    <%= f.label "Left Eye: Additional criterium" %>    
+	    <%= f.select :le_indicator_extra, %w(CYL AXIS), include_blank: true,
+	                                      class: 'form-control' %>
+	    <%= f.label 'numeric value' %>
+	    <%= f.text_field :le_value_extra, class: 'form-control', placeholder: "Left Eye numeral value..." %>	
 
- 			<% if @prescription %>
- 			 <% if @prescription.re_indicator == 'CYL' %>
- 				if re_indicator add re_indicator_extra & ..
- 			<% end %>
- 			<% end %>
-			
- 			<% if @prescription && (@prescription.le_indicator == 'CYL') %>
- 				if le_indicator add le_indicator_extra & ..
- 			<% end %>	
+ 	<!-- if form dynamic or second form
+ 	 		if @prescription
+ 				if @prescription.re_indicator == 'CYL' 'AXIS'
+ 				 re_indicator add re_indicator_extra & re_value
+				end
+ 		  if @prescription.le_indicator == 'CYL') || 'AXIS'
+ 				if le_indicator add le_indicator_extra & le_value
+ 			end -->
+
     </div>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
