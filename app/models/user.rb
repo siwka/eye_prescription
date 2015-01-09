@@ -19,7 +19,8 @@ class User < ActiveRecord::Base
                     email: true,
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, length: { minimum: 8 }
+  validates :password, length: { minimum: 8,
+                                 message: "require minimum 8 characters" }
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
