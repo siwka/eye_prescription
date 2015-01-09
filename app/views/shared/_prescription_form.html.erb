@@ -8,11 +8,6 @@
 	        <%= f.check_box :glasses %>
 	        <span>Glasses</span>
 	      <% end %>
-	      <%= f.label :glasses do %>
-	        <%= f.check_box :glasses %>
-	        <span>Contact lenses</span>
-	      <% end %>
-	      <% @prescription.glasses = false if @prescription.glasses.nil? %>
       <div>
 
 	    <%= f.label "Right Eye: Criterium" %>
