@@ -3,13 +3,25 @@
   <div class="row">
     <div class="col-md-12 col-md-offset-0"> 
 	    <%= f.label :glasses %>
-	    <%= f.text_field :glasses, class: 'form-control', placeholder: "Create new prescription... 'true' or 'false' for checkbox" %>
+	    <%= f.text_field :glasses, class: 'form-control', placeholder: "Create new prescription... 'true' or 'false' for checkbox" %>	    
 	    <%= f.text_field :re_indicator, class: 'form-control', placeholder: "Right Eye criterium..." %>
 	    <%= f.text_field :re_value, class: 'form-control', placeholder: "Right eye numeral value..." %>
 	    <%= f.text_field :le_indicator, class: 'form-control', placeholder: "Left Eye criterium..." %>
 	    <%= f.text_field :le_value, class: 'form-control', placeholder: "Left Eye numeral value..." %>	    
-<!-- 	    siwka - change this form:  number_field_tag(name, value = nil, options = {})
- -->     </div>
+<!-- 	    siwka - change this form:
+		   number_field_tag(name, value = nil, options = {})
+	     f.collection_select include_blank: true 
+ --> 
+ 			<% if @prescription %>
+ 			 <% if @prescription.re_indicator == 'CYL' %>
+ 				if re_indicator add re_indicator_extra & ..
+ 			<% end %>
+ 			<% end %>
+			
+ 			<% if @prescription && (@prescription.le_indicator == 'CYL') %>
+ 				if le_indicator add le_indicator_extra & ..
+ 			<% end %>	
+    </div>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>

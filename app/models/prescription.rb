@@ -6,7 +6,7 @@ class Prescription < ActiveRecord::Base
   validates :user_id, presence: true
   validates :glasses, presence: true
   validates :re_indicator, presence: true#,
-                           # inclusion: { in: CRITERIA_CODES.keys.map(&:to_s) }
+                           # inclusion: { in: CRITERIA_CODES.keys.map(&:to_s) }   #siwka
   validates :re_value, presence: true, numericality: true
   validates :le_indicator, presence: true
   validates :le_value, presence: true, numericality: true
