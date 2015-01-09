@@ -5,7 +5,8 @@ en:
       destroy: "Log out"
       forgot_password: "Reset <br /><em>Password</em>"
     staticpages:
-      home: "Welcome to Optician Prescription"		
+      home:  "Welcome to Optician Prescription"		
     users:
-      new: "Sign up"
+      index: "List of Users"
+      new:   "Sign up"
       prescriptions: "Appointments for %{client}</em>"

@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: :index
+
+  def index
+    @users = User.paginate(page: params[:page], per_page: 15)
+  end
 
   def new
   	@user = User.new
@@ -6,7 +11,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-    @prescriptions = @user.prescriptions.paginate(page: params[:page], per_page: 4)    
+    @prescriptions = @user.prescriptions.paginate(page: params[:page], per_page: 4)
   end
 
   def create
