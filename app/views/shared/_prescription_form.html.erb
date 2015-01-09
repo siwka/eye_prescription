@@ -3,20 +3,30 @@
   <div class="row">
     <div class="col-md-12 col-md-offset-0">
 
-      <%= f.label :glasses do %>
-        <%= f.check_box :glasses %>
-        <span>Glasses</span>
-      <% end %>  
+	    <div>
+	      <%= f.label :glasses do %>
+	        <%= f.check_box :glasses %>
+	        <span>Glasses</span>
+	      <% end %>
+	      <%= f.label :glasses do %>
+	        <%= f.check_box :glasses %>
+	        <span>Contact lenses</span>
+	      <% end %>
+	      <% @prescription.glasses = false if @prescription.glasses.nil? %>
+      <div>
 
-	    <%= f.text_field :re_indicator, class: 'form-control', placeholder: "Right Eye criterium..." %>
-	    <!-- --- -->
+	    <%= f.label "Right Eye: Criterium" %>
+	    <%= f.select :re_indicator, %w(SPH CYL AXIS BC DIAM), class: 'form-control' %>
+	    <%= f.label 'numeric value' %>
 	    <%= f.text_field :re_value, class: 'form-control', placeholder: "Right eye numeral value..." %>
-	    <%= f.text_field :le_indicator, class: 'form-control', placeholder: "Left Eye criterium..." %>
+
+	    <%= f.label "Left Eye: Criterium" %>	    
+	    <%= f.select :le_indicator, %w(SPH CYL AXIS BC DIAM) %>
+	    <%= f.label 'numeric value' %>
 	    <%= f.text_field :le_value, class: 'form-control', placeholder: "Left Eye numeral value..." %>	    
-<!-- 	    siwka - change this form:
-		   number_field_tag(name, value = nil, options = {})
-	     f.collection_select include_blank: true 
- --> 
+ 
+
+
  			<% if @prescription %>
  			 <% if @prescription.re_indicator == 'CYL' %>
  				if re_indicator add re_indicator_extra & ..
