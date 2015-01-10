@@ -19,33 +19,36 @@ class Prescription < ActiveRecord::Base
   end   
 
   with_options if: :re_is_cyl? do |presc|
-    presc.validates :re_indicator_extra, presence: true, inclusion: { in: %w(AXIS),
-    																				message: "with CYL only %{value} is valid"  }
-    presc.validates :re_value_extra, presence: true, numericality: { only_integer: true }
+    presc.validates_inclusion_of :re_indicator_extra, in: %w(AXIS),
+    												message: "with right eye CYL only AXIS is valid"
+    presc.validates :re_value_extra, presence: true,
+                                     numericality: { only_integer: true }
   end
 
   with_options if: :re_is_axis? do |presc|
-    presc.validates :re_indicator_extra, presence: true, inclusion: { in: %w(CYL),
-    																				message: "with AXIS only %{value} is valid"  }
-    presc.validates :re_value_extra, presence: true, numericality: true
+    presc.validates_inclusion_of :re_indicator_extra, in: %w(CYL),
+    												message: "with right eye AXIS only CYL is valid"
+    presc.validates :re_value_extra, presence: true,
+                                     numericality: true
+  end
+
+  with_options if: :le_is_cyl? do |presc|
+    presc.validates_inclusion_of :le_indicator_extra, in: %w(AXIS),
+    												message: "with left eye CYL only AXIS is valid"
+    presc.validates :le_value_extra, presence: true, numericality: { only_integer: true }
+  end
+
+  with_options if: :le_is_axis? do |presc|
+    presc.validates_inclusion_of :le_indicator_extra, in: %w(CYL),
+    												message: "with left eye AXIS only CYL is valid"
+    presc.validates :le_value_extra, presence: true,
+                                     numericality: true
   end
 
   with_options unless: :re_cyl_or_axis? do |presc|
     presc.validates :re_indicator_extra, inclusion: { in: [''] }
     presc.validates :re_value_extra, inclusion: { in: [nil] }
-  end 
-
-  with_options if: :le_is_cyl? do |presc|
-    presc.validates :le_indicator_extra, presence: true, inclusion: { in: %w(AXIS),
-    																				message: "with CYL only %{value} is valid"  }
-    presc.validates :le_value_extra, presence: true, numericality: { only_integer: true }
-  end
-
-  with_options if: :le_is_axis? do |presc|
-    presc.validates :le_indicator_extra, presence: true, inclusion: { in: %w(CYL),
-    																				message: "with AXIS only %{value} is valid"  }
-    presc.validates :le_value_extra, presence: true, numericality: true
-  end  
+  end    
 
   with_options unless: :le_cyl_or_axis? do |presc|
     presc.validates :le_indicator_extra, inclusion: { in: [''] }
