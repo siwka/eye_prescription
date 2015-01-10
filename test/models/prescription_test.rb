@@ -9,9 +9,9 @@ class PrescriptionTest < ActiveSupport::TestCase
 																							 re_value: -2.25,
 																							 le_indicator: 'SPH',
 																							 le_value: -1.25,
-																							 re_indicator_extra: nil,
+																							 re_indicator_extra: '',
 							     														 re_value_extra: nil,
-																					     le_indicator_extra: nil,
+																					     le_indicator_extra: '',
 																					     le_value_extra: nil )
 	end
 

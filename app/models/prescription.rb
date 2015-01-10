@@ -4,7 +4,7 @@ class Prescription < ActiveRecord::Base
   default_scope -> { order(created_at: :desc) }
 
   validates :user_id, presence: true
-  validates :glasses, presence: true
+  validates_inclusion_of :glasses, in: [true, false]
   validates :re_indicator, presence: true#,
                            # inclusion: { in: CRITERIA_CODES.keys.map(&:to_s) }   #siwka
   validates :re_value, presence: true, numericality: true
@@ -13,13 +13,10 @@ class Prescription < ActiveRecord::Base
 
   with_options if: :glasses do |presc|
     presc.validates :re_indicator, exclusion: { in: %w(BC DIAM),
-    												message: "%{value} present only for contact lens prescription" }
-  end
-
-  with_options if: :glasses do |presc|
+                            message: "%{value} present only for contact lens prescription" }
     presc.validates :le_indicator, exclusion: { in: %w(BC DIAM),
-    												message: "%{value} present only for contact lens prescription" }
-  end  
+                            message: "%{value} present only for contact lens prescription" }
+  end   
 
   with_options if: :re_is_cyl? do |presc|
     presc.validates :re_indicator_extra, presence: true, inclusion: { in: %w(AXIS),
@@ -34,7 +31,7 @@ class Prescription < ActiveRecord::Base
   end
 
   with_options unless: :re_cyl_or_axis? do |presc|
-    presc.validates :re_indicator_extra, inclusion: { in: [nil] }
+    presc.validates :re_indicator_extra, inclusion: { in: [''] }
     presc.validates :re_value_extra, inclusion: { in: [nil] }
   end 
 
@@ -51,7 +48,7 @@ class Prescription < ActiveRecord::Base
   end  
 
   with_options unless: :le_cyl_or_axis? do |presc|
-    presc.validates :le_indicator_extra, inclusion: { in: [nil] }
+    presc.validates :le_indicator_extra, inclusion: { in: [''] }
     presc.validates :le_value_extra, inclusion: { in: [nil] }
   end 
 

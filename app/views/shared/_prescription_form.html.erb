@@ -1,33 +1,40 @@
 <%= form_for(@prescription) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="row">
-    <div class="col-md-12 col-md-offset-0" >
-     <% @prescription.glasses = false %>
-      <%= f.collection_radio_buttons :glasses, [[true, 'Glasses'], [false, 'Contact lenses']], :first, :last, { checked: true } %>
-		</div>
-
     <div class="col-md-12 col-md-offset-0">
+
+    	<div>
+	    <%= f.collection_radio_buttons :glasses,
+						    						 [[true, 'Glasses'], [false, 'Contact lenses']],
+						    						  :first, :last, checked: true %>
+			<br/><br/>
+			<!-- siwka add css e.g.  class: "radio_buttons inline" -->
+			</div>
+		  				
+
 	    <%= f.label "Right Eye: Criterium" %>
 	    <%= f.select :re_indicator, %w(SPH CYL AXIS BC DIAM), class: 'form-control' %>
+
 	    <%= f.label 'numeric value' %>
 	    <%= f.text_field :re_value, class: 'form-control', placeholder: "Right eye numeral value..." %>
 
 	    <%= f.label "Left Eye: Criterium" %>	    
 	    <%= f.select :le_indicator, %w(SPH CYL AXIS BC DIAM) %>
+
 	    <%= f.label 'numeric value' %>
-	    <%= f.text_field :le_value, class: 'form-control', placeholder: "Left Eye numeral value..." %>    
- 
+	    <%= f.text_field :le_value, class: 'form-control', placeholder: "Left Eye numeral value..." %> 
+
 	    <%= f.label "Right Eye: Additional criterium" %>
-	    <%= f.select :re_indicator_extra, %w(CYL AXIS), include_blank: true,
-	    																  class: 'form-control' %>
+	    <%= f.text_field :re_indicator_extra, default: nil, class: 'form-control', placeholder: "'AXIS' or 'CYL' only" %>
+
 	    <%= f.label 'numeric value' %>
 	    <%= f.text_field :re_value_extra, class: 'form-control', placeholder: "Right eye numeral value..." %>
 
 	    <%= f.label "Left Eye: Additional criterium" %>    
-	    <%= f.select :le_indicator_extra, %w(CYL AXIS), include_blank: true,
-	                                      class: 'form-control' %>
+	    <%= f.text_field :le_indicator_extra, class: 'form-control', placeholder: "'AXIS' or 'CYL' only" %>
+
 	    <%= f.label 'numeric value' %>
-	    <%= f.text_field :le_value_extra, class: 'form-control', placeholder: "Left Eye numeral value..." %>	
+	    <%= f.text_field :le_value_extra, class: 'form-control', placeholder: "Left Eye numeral value..." %>
 
  	<!-- if form dynamic or second form
  	 		if @prescription
@@ -36,7 +43,7 @@
 				end
  		  if @prescription.le_indicator == 'CYL') || 'AXIS'
  				if le_indicator add le_indicator_extra & le_value
- 			end -->
+ 			end siwka-->
 
     </div>
   </div>
