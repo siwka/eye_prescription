@@ -4,12 +4,15 @@ class Prescription < ActiveRecord::Base
   default_scope -> { order(created_at: :desc) }
 
   validates :user_id, presence: true
-  validates_inclusion_of :glasses, in: [true, false]
-  validates :re_indicator, presence: true#,
-                           # inclusion: { in: CRITERIA_CODES.keys.map(&:to_s) }   #siwka
-  validates :re_value, presence: true, numericality: true
+  # validates :glasses, presence: true
+  validates_inclusion_of :glasses, in: [true, false] # add test view works
+  validates_inclusion_of :re_indicator,
+                           in: CRITERIA.keys.map(&:to_s), #siwka
+                           # in: %w(SPH CYL AXIS BC DIAM),
+                           message: "should be any of %w(:SPH :CYL :AXIS :BC :DIAM)"
+  validates :re_value,     presence: true, numericality: true
   validates :le_indicator, presence: true
-  validates :le_value, presence: true, numericality: true
+  validates :le_value,     presence: true, numericality: true
 
   with_options if: :glasses do |presc|
     presc.validates :re_indicator, exclusion: { in: %w(BC DIAM),

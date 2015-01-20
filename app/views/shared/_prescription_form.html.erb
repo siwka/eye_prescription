@@ -8,18 +8,19 @@
 						    						 [[true, 'Glasses'], [false, 'Contact lenses']],
 						    						  :first, :last, checked: true %>
 			<br/><br/>
-			<!-- siwka add css e.g.  class: "radio_buttons inline" -->
+			<!-- siwka add css,  class: "radio_buttons inline" -->
 			</div>
 		  				
 
 	    <%= f.label "Right Eye: Criterium" %>
-	    <%= f.select :re_indicator, %w(SPH CYL AXIS BC DIAM), class: 'form-control' %>
+	    <%= f.select :re_indicator, CRITERIA.keys.map(&:to_s), class: 'form-control' %>
 
 	    <%= f.label 'numeric value' %>
 	    <%= f.text_field :re_value, class: 'form-control', placeholder: "Right eye numeral value..." %>
+	    <!-- change to number_field_tag siwka  & next fields too -->
 
 	    <%= f.label "Left Eye: Criterium" %>	    
-	    <%= f.select :le_indicator, %w(SPH CYL AXIS BC DIAM) %>
+	    <%= f.select :le_indicator, CRITERIA.keys.map(&:to_s) %>
 
 	    <%= f.label 'numeric value' %>
 	    <%= f.text_field :le_value, class: 'form-control', placeholder: "Left Eye numeral value..." %> 

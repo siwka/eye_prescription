@@ -3,6 +3,9 @@ class PrescriptionsController < ApplicationController
 
 	def create
 		@prescription = current_user.prescriptions.build(prescription_params)
+		#siwka - moze to zadziala bez verification?
+		params[:prescription][:glasses] == 1 ?  (@prescription.glasses = true) : (@prescription.glasses = false)
+
 		if @prescription.save
       flash[:success] = "Prescription created!"
       redirect_to root_url
