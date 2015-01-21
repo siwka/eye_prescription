@@ -109,17 +109,16 @@ class PrescriptionTest < ActiveSupport::TestCase
     puts "nn<<<<<<<<<<<<<<<<<<<<<<"
     # @prescription.le_indicator_extra = ''
     #  @prescription.le_value_extra = nil    
-    puts @prescription.glasses
-    puts @prescription.re_indicator.inspect
-    puts @prescription.re_value
-    puts @prescription.le_indicator.inspect
-    puts @prescription.le_value
-    puts "--------"
-    puts @prescription.re_indicator_extra.inspect
-    puts @prescription.re_value_extra
-    puts @prescription.le_indicator_extra = ''
-    puts @prescription.le_value_extra = nil
-
+    # puts @prescription.glasses
+    # puts @prescription.re_indicator.inspect
+    # puts @prescription.re_value
+    # puts @prescription.le_indicator.inspect
+    # puts @prescription.le_value
+    # puts "--------"
+    # puts @prescription.re_indicator_extra.inspect
+    # puts @prescription.re_value_extra
+    # puts @prescription.le_indicator_extra = ''
+    # puts @prescription.le_value_extra = nil  siwka
   	assert @prescription.valid?
   end
 
@@ -127,20 +126,6 @@ class PrescriptionTest < ActiveSupport::TestCase
   	@prescription.re_indicator = 'CYL'
   	@prescription.re_value_extra = 55
   	@prescription.re_indicator_extra = 'AXIS'
-    puts "nn<<<<<<<<<<<<<<<<<<<<<<"
-    @prescription.le_indicator_extra = ''
-     @prescription.le_value_extra = nil    
-    puts @prescription.glasses
-    puts @prescription.re_indicator.inspect
-    puts @prescription.re_value
-    puts @prescription.le_indicator.inspect
-    puts @prescription.le_value
-    puts "--------"
-    puts @prescription.re_indicator_extra.inspect
-    puts @prescription.re_value_extra
-    puts @prescription.le_indicator_extra = ''
-    puts @prescription.le_value_extra = nil
-
   	assert @prescription.valid?
   end  
 
