@@ -14,8 +14,9 @@ User.create!(name:  "Eyeuser",
 end
 
 
-criteria = %w(SPH CYL AXIS BC DIAM)
-# criteria = %w(SPH LYC SIXA CB MAID)
+# criteria = %w(SPH CYL AXIS BC DIAM)
+# prescriptions with above terms will not seed easy due to validation
+criteria = %w(SPH LYC SIXA CB MAID)
 
 users = User.order(:created_at).take(6)
 19.times do
