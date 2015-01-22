@@ -16,20 +16,20 @@ end
 
 # criteria = %w(SPH CYL AXIS BC DIAM)
 # prescriptions with above terms will not seed easy due to validation
-criteria = %w(SPH LYC SIXA CB MAID)
+# criteria = %w(SPH LYC SIXA CB MAID)
 
-users = User.order(:created_at).take(6)
-19.times do
-  content = Faker::Lorem.sentence(5)
-  users.each do |user| 
-  	user.prescriptions.create!( glasses: true,
-															  re_indicator: criteria.sample,
-															  re_value: rand(-10..10),
-															  le_indicator: criteria.sample,
-															  le_value: rand(-10..10),
-															  re_indicator_extra: nil,
-															  re_value_extra: nil,
-															  le_indicator_extra: nil,
-															  le_value_extra: nil)
-  end	
-end
+# users = User.order(:created_at).take(6)
+# 19.times do
+#   content = Faker::Lorem.sentence(5)
+#   users.each do |user| 
+#   	user.prescriptions.create!( glasses: true,
+# 															  re_indicator: criteria.sample,
+# 															  re_value: rand(-10..10),
+# 															  le_indicator: criteria.sample,
+# 															  le_value: rand(-10..10),
+# 															  re_indicator_extra: nil,
+# 															  re_value_extra: nil,
+# 															  le_indicator_extra: nil,
+# 															  le_value_extra: nil)
+#   end	
+# end
