@@ -22,23 +22,14 @@
 	    <%= f.select :re_indicator_extra, %w(AXIS CYL), {:include_blank => true, :default => nil} %>
 
 	    <%= f.label 'numeric value' %>
-	    <%= f.number_field :re_value_extra, { value: nil, min: -10, max: 180, step: 0.25 } %>	    
-
+	    <%= f.select :re_value_extra, HASH[:AXIS], {:include_blank => true, :default => nil} %>
+	    <!-- siwka - generalize above & change other f.number_fields -->	    	    
 	    <%= f.label "Left Eye: Additional criterium" %>    
 	    <%= f.select :le_indicator_extra, %w(AXIS CYL), {:include_blank => true, :default => nil} %>
 
 	    <%= f.label 'numeric value' %>
-	    <%= f.number_field :le_value_extra, { value: nil, min: -10, max: 180, step: 0.25 } %>
-
- 	<!-- if form dynamic or second form
- 	 		if @prescription
- 				if @prescription.re_indicator == 'CYL' 'AXIS'
- 				 re_indicator add re_indicator_extra & re_value
-				end
- 		  if @prescription.le_indicator == 'CYL') || 'AXIS'
- 				if le_indicator add le_indicator_extra & le_value
- 			end siwka-->
-
+	    <%= f.select :le_value_extra, HASH[:CYL].reverse, {:include_blank => true, :default => nil} %> 
+	    <!-- siwka - generalize above & change other f.number_fields -->
     </div>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>

@@ -105,8 +105,7 @@ class PrescriptionTest < ActiveSupport::TestCase
   	@prescription.re_indicator = 'CYL'
   	@prescription.re_indicator_extra = 'AXIS'
     @prescription.re_value_extra = 4
-
-    puts "nn<<<<<<<<<<<<<<<<<<<<<<"
+    # puts "nn<<<<<<<<<<<<<<<<<<<<<<"
     # @prescription.le_indicator_extra = ''
     #  @prescription.le_value_extra = nil    
     # puts @prescription.glasses

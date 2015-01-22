@@ -15,8 +15,8 @@ end
 
 
 # criteria = %w(SPH CYL AXIS BC DIAM)
-# prescriptions with above terms will not seed easy due to validation
-# criteria = %w(SPH LYC SIXA CB MAID)
+# prescriptions will not seed easy due to validation
+# (criteria = %w(SPH LYC SIXA CB MAID)- used to work - siwka)
 
 # users = User.order(:created_at).take(6)
 # 19.times do
