@@ -70,6 +70,34 @@ class PrescriptionTest < ActiveSupport::TestCase
   end
 
 # conditional validations
+  test "re_value should be a number (7..9), 0.1 diff, if right eye BC" do
+    @prescription.glasses = false
+    @prescription.re_indicator = 'BC'
+    @prescription.re_value = 8.4
+    assert @prescription.valid?
+  end
+
+  test "le_value should be a number (7..9), 0.1 diff, if left eye BC" do
+    @prescription.glasses = false
+    @prescription.le_indicator = 'BC'
+    @prescription.le_value = 6
+    assert_not @prescription.valid?
+  end
+
+  test "re_value should be a number (13..15), 0.1 diff, if right eye DIAM" do
+    @prescription.glasses = false
+    @prescription.re_indicator = 'DIAM'
+    @prescription.re_value = 14.4
+    assert @prescription.valid?
+  end
+
+  test "le_value should be a number (13..15), 0.1 diff, if left eye DIAM" do
+    @prescription.glasses = false
+    @prescription.le_indicator = 'DIAM'
+    @prescription.le_value = 6
+    assert_not @prescription.valid?
+  end  
+
   test "re_value_extra should be nil if re_indicator is not CYL or AXIS" do
   	@prescription.re_value_extra = 2
   	assert_not @prescription.valid?
@@ -105,19 +133,6 @@ class PrescriptionTest < ActiveSupport::TestCase
   	@prescription.re_indicator = 'CYL'
   	@prescription.re_indicator_extra = 'AXIS'
     @prescription.re_value_extra = 4
-    # puts "nn<<<<<<<<<<<<<<<<<<<<<<"
-    # @prescription.le_indicator_extra = ''
-    #  @prescription.le_value_extra = nil    
-    # puts @prescription.glasses
-    # puts @prescription.re_indicator.inspect
-    # puts @prescription.re_value
-    # puts @prescription.le_indicator.inspect
-    # puts @prescription.le_value
-    # puts "--------"
-    # puts @prescription.re_indicator_extra.inspect
-    # puts @prescription.re_value_extra
-    # puts @prescription.le_indicator_extra = ''
-    # puts @prescription.le_value_extra = nil  siwka
   	assert @prescription.valid?
   end
 
@@ -142,26 +157,26 @@ class PrescriptionTest < ActiveSupport::TestCase
   	assert_not @prescription.valid?
   end
 
-  test "le_indicator_extra should not be a empty if right eye CYL" do
+  test "le_indicator_extra should not be a empty if left eye CYL" do
   	@prescription.le_indicator = :CYL
   	assert_not @prescription.valid?
   end 
 
-  test "le_indicator_extra should be AXIS if right eye CYL" do
+  test "le_indicator_extra should be AXIS if left eye CYL" do
   	@prescription.le_indicator = :CYL
-  	@prescription.le_value_extra = 4  	
+  	@prescription.le_value_extra = 26  	
   	@prescription.le_indicator_extra = :AXIS
   	assert @prescription.valid?
   end
 
-  test "le_value_extra should be a number if right eye CYL" do
+  test "le_value_extra should be a number if left eye CYL" do
   	@prescription.le_indicator = :CYL
-  	@prescription.le_value_extra = 55  	
+  	@prescription.le_value_extra = 61  	
   	@prescription.le_indicator_extra = :AXIS
   	assert @prescription.valid?
   end  
 
-  test "le_value_extra should be an integer number if right eye CYL" do
+  test "le_value_extra should be an integer number if left eye CYL" do
   	@prescription.le_indicator = :CYL
   	@prescription.le_value_extra = 4.25  	
   	@prescription.le_indicator_extra = :AXIS
@@ -183,17 +198,43 @@ class PrescriptionTest < ActiveSupport::TestCase
 
   test "le_value_extra should be a number if left eye AXIS" do
   	@prescription.le_indicator = :AXIS
-  	@prescription.le_value_extra = 55  	
+    @prescription.le_value = 79
+  	@prescription.le_value_extra = -5.75  	
   	@prescription.le_indicator_extra = :CYL
   	assert @prescription.valid?
   end  
 
-  test "le_value_extra should be an integer number if left eye AXIS" do
+  test "le_value_extra should not be an integer number if left eye AXIS" do
   	@prescription.le_indicator = :AXIS
-  	@prescription.re_value_extra = 4.25  	
+    @prescription.le_value = 66
+  	@prescription.le_value_extra = 4  	
   	@prescription.le_indicator_extra = :CYL
   	assert_not @prescription.valid?
+  end
+
+  test "re_value_extra should not be an integer number if right eye AXIS" do
+    @prescription.re_indicator = :AXIS
+    @prescription.re_value = 66
+    @prescription.re_value_extra = 4    
+    @prescription.re_indicator_extra = :CYL
+    assert_not @prescription.valid?
+  end
+
+  test "le_value & le_value_extra should be numbers from specific range if left eye AXIS" do
+    @prescription.le_indicator = :AXIS
+    @prescription.le_value = 66
+    @prescription.le_value_extra = -4.25    
+    @prescription.le_indicator_extra = :CYL
+    assert @prescription.valid?
   end  
+
+  test "re_value & re_value_extra should be numbers from specific range if right eye AXIS" do
+    @prescription.re_indicator = :AXIS
+    @prescription.re_value = 66
+    @prescription.re_value_extra = -4.25    
+    @prescription.re_indicator_extra = :CYL
+    assert @prescription.valid?
+  end   
 
   test "BC le_indicator is only present for contact lens prescriptions" do
   	@prescription.glasses = true

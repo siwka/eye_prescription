@@ -18,7 +18,7 @@ end
 
 HASH = CRITERIA.keys.map.each_with_object({ }) { |k, h| h[k] = mk_arr(k) }
 
-# or make class?   -siwka
+# or make class   -siwka
 # CRITERIA.keys.map(&:to_s).each do |key|
 # 	self.instance_variable_set(('@' + key.downcase).intern, mk_arr(key))
 # end
