@@ -1,3 +1,6 @@
+https://aqueous-scrubland-9280.herokuapp.com/
+You can sign in with a fake email. Authorization not added for that reason.
+
 Business Requirements:
 User can sign-up with a username and password, login, and logout.
 User can add a new eyeglasses or contacts prescription. A prescription consists of the following values for EACH eye. Entries should be validated using the following criteria:
