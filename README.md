@@ -1,5 +1,5 @@
 https://aqueous-scrubland-9280.herokuapp.com/
-You can sign in with a fake email. Authorization not added for that reason.
+You can sign in with a fake email. Authentication not added for that reason.
 
 Business Requirements:
 User can sign-up with a username and password, login, and logout.
